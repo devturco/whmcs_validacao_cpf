@@ -54,10 +54,10 @@ if(!function_exists("validaCPF")){
 		 }else{   
 			for($t = 9; $t < 11; $t++){
 				for($d = 0, $c = 0; $c < $t; $c++){
-					$d += $cpf{$c} * (($t + 1) - $c);
+					$d += $cpf[$c] * (($t + 1) - $c);
 				}
 				$d = ((10 * $d) % 11) % 10;
-				if($cpf{$c} != $d){
+				if($cpf[$c] != $d){
 					return false;
 				}
 			}
@@ -93,16 +93,16 @@ if(!function_exists("validaCNPJ")){
 			for ($i = 0; $i < 13; $i++) {
 				$j = $j == 1 ? 9 : $j;
 				$k = $k == 1 ? 9 : $k;
-				$soma2 += ($cnpj{$i} * $k);
+				$soma2 += ($cnpj[$i] * $k);
 				if($i < 12){
-					$soma1 += ($cnpj{$i} * $j);
+					$soma1 += ($cnpj[$i] * $j);
 				}
 				$k--;
 				$j--;
 			}
 			$digito1 = $soma1 % 11 < 2 ? 0 : 11 - $soma1 % 11;
 			$digito2 = $soma2 % 11 < 2 ? 0 : 11 - $soma2 % 11;
-			return (($cnpj{12} == $digito1) and ($cnpj{13} == $digito2));
+			return (($cnpj[12] == $digito1) and ($cnpj[13] == $digito2));
 		}
 	}
 }
